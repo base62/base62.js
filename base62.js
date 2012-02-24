@@ -23,3 +23,5 @@ var Base62 = (function (my) {
 
   return my;
 }({}));
+
+module.exports = Base62
