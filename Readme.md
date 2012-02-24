@@ -1,0 +1,13 @@
+# Base62.js
+
+A javascript Base62 encode/decoder for node.js
+
+## Install
+
+    npm install base62
+
+## Usage
+
+    Base62 = require('base62')
+    Base62.encode(999)  // 'g7'
+    Base62.encode('g7') // 999
