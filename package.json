@@ -1,4 +1,14 @@
 {
+  "author": "Andrew Nesbitt <andrewnez@gmail.com> (http://andrew-nesbitt.com/)",
   "name": "base62",
-  "version": "0.1.0"
+  "description": "Javascript Base62 encode/decoder",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andrew/base62.js.git"
+  },
+  "main": "base62.js",
+  "engines": {
+    "node": "*"
+  }
 }
