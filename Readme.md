@@ -10,4 +10,4 @@ A javascript Base62 encode/decoder for node.js
 
     Base62 = require('base62')
     Base62.encode(999)  // 'g7'
-    Base62.encode('g7') // 999
+    Base62.decode('g7') // 999
