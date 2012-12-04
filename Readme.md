@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/andrew/base62.js.png)](http://travis-ci.org/andrew/base62.js)
 # Base62.js
 
 A javascript Base62 encode/decoder for node.js
