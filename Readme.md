@@ -1,5 +1,5 @@
+# Base62.js 
 [![build status](https://secure.travis-ci.org/andrew/base62.js.png)](http://travis-ci.org/andrew/base62.js)
-# Base62.js
 
 A javascript Base62 encode/decoder for node.js
 
@@ -17,7 +17,6 @@ A javascript Base62 encode/decoder for node.js
 
 Source hosted at [GitHub](http://github.com/andrew/base62.js).
 Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/split/base62.js).
-
 
 ### Note on Patches/Pull Requests
 

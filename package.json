@@ -10,5 +10,11 @@
   "main": "base62.js",
   "engines": {
     "node": "*"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "devDependencies": {
+    "mocha": "1.7.x"
   }
 }
