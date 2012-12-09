@@ -3,7 +3,7 @@
   "name": "base62",
   "description": "Javascript Base62 encode/decoder",
   "keywords": ["base-62"],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/andrew/base62.js.git"
