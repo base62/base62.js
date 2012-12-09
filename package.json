@@ -2,6 +2,7 @@
   "author": "Andrew Nesbitt <andrewnez@gmail.com> (http://andrew-nesbitt.com/)",
   "name": "base62",
   "description": "Javascript Base62 encode/decoder",
+  "keywords": ["base-62"],
   "version": "0.1.0",
   "repository": {
     "type": "git",
