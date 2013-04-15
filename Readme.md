@@ -20,7 +20,7 @@ Base62.decode('g7') // 999
 ## Development
 
 Source hosted at [GitHub](http://github.com/andrew/base62.js).
-Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/split/base62.js).
+Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/base62.js).
 
 ### Note on Patches/Pull Requests
 
