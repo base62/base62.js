@@ -1,5 +1,5 @@
 {
-  "author": "Andrew Nesbitt <andrewnez@gmail.com> (http://andrew.github.io)",
+  "author": "Andrew Nesbitt <andrewnez@gmail.com> (http://nesbitt.io)",
   "name": "base62",
   "description": "Javascript Base62 encode/decoder",
   "keywords": [
