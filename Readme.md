@@ -31,4 +31,4 @@ Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/base6
 
 ## Copyright
 
-Copyright (c) 2013 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/base62.js/blob/master/LICENSE) for details.
+Copyright (c) 2014 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/base62.js/blob/master/LICENSE) for details.
