@@ -1,4 +1,5 @@
 # Base62.js
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/andrew/base62.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![build status](https://secure.travis-ci.org/andrew/base62.js.svg)](http://travis-ci.org/andrew/base62.js)
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
 [![Dependency Status](https://david-dm.org/andrew/base62.js.svg?theme=shields.io)](https://david-dm.org/andrew/base62.js)
