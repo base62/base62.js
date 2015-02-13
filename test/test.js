@@ -26,7 +26,7 @@ describe("setCharacterSequence", function(){
     it("should update the character sequence", function(){
         Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 
-        //Test default character set is in tact
+        //Test default character set is not intact
         assert.notEqual(Base62.encode(999), 'g7');
 
         //Test new character set test cases
