@@ -1,25 +1,38 @@
-module.exports = (function (my) {
-  my.chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+module.exports = (function (Base62) {
+    var DEFAULT_CHARACTER_SET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  my.encode = function(i){
-    if (i === 0) {return '0';}
-    var s = '';
-    while (i > 0) {
-      s = this.chars[i % 62] + s;
-      i = Math.floor(i/62);
-    }
-    return s;
-  };
-  my.decode = function(a,b,c,d){
-    for (
-      b = c = (
-        a === (/\W|_|^$/.test(a += "") || a)
-      ) - 1;
-      d = a.charCodeAt(c++);
-    )
-    b = b * 62 + d - [, 48, 29, 87][d >> 5];
-    return b;
-  };
+    Base62.encode = function(integer){
+        if (integer === 0) {return '0';}
+        var s = '';
+        while (integer > 0) {
+            s = Base62.characterSet[integer % 62] + s;
+            integer = Math.floor(integer/62);
+        }
+        return s;
+    };
 
-  return my;
+    Base62.decode = function(base62String){
+        var val = 0, base62Chars = base62String.split("").reverse();
+        base62Chars.forEach(function(character, index){
+            val += Base62.characterSet.indexOf(character) * Math.pow(62, index);
+        });
+        return val;
+    };
+
+    Base62.setCharacterSet = function(chars) {
+        var arrayOfChars = chars.split(""), uniqueCharacters = [];
+
+        if(arrayOfChars.length != 62) throw Error("You must supply 62 characters");
+
+        arrayOfChars.forEach(function(char){
+            if(!~uniqueCharacters.indexOf(char)) uniqueCharacters.push(char);
+        });
+
+        if(uniqueCharacters.length != 62) throw Error("You must use unique characters.");
+
+        Base62.characterSet = arrayOfChars;
+    };
+
+    Base62.setCharacterSet(DEFAULT_CHARACTER_SET);
+    return Base62;
 }({}));
