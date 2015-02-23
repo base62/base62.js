@@ -15,10 +15,25 @@ npm install base62
 
 ## Usage
 
+### Default Character Set Example
+
 ```javascript
 Base62 = require('base62')
 Base62.encode(999)  // 'g7'
 Base62.decode('g7') // 999
+```
+
+### Custom Character Set Example
+
+The default character set is `0-9a-zA-Z`. This can be updated to a custom character set. Naturally, it must be 62 characters long.
+
+Instead of the character set `0-9a-zA-Z` you want to use `0-9A-Za-z`, call the `setCharacterSet()` method on the Base62 object passing in the string `"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"`. Note that all characters must be unique.
+
+```javascript
+Base62 = require('base62')
+Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+Base62.encode(999)  // 'G7'
+Base62.decode('G7') // 999
 ```
 
 ## Development
