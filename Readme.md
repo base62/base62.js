@@ -1,4 +1,4 @@
-# Base62.js
+# [Base62.js](http://libraries.io/npm/base62)
 [![build status](https://secure.travis-ci.org/andrew/base62.js.svg)](http://travis-ci.org/andrew/base62.js)
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
 [![Dependency Status](https://david-dm.org/andrew/base62.js.svg?theme=shields.io)](https://david-dm.org/andrew/base62.js)
