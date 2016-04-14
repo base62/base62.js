@@ -3,25 +3,26 @@
   "name": "base62",
   "description": "Javascript Base62 encode/decoder",
   "keywords": [
-    "base-62"
+    "base-62",
+    "encoder",
+    "decoder"
   ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/andrew/base62.js/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "version": "1.1.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/andrew/base62.js.git"
+    "url": "git+https://github.com/andrew/base62.js.git"
   },
+  "bugs": {
+    "url": "https://github.com/andrew/base62.js/issues"
+  },
+  "homepage": "https://github.com/andrew/base62.js",
   "main": "base62.js",
   "engines": {
     "node": "*"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha"
   },
   "devDependencies": {
     "mocha": "~2.4.5"
