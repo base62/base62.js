@@ -19,7 +19,7 @@
   "homepage": "https://github.com/andrew/base62.js",
   "main": "base62.js",
   "engines": {
-    "node": "*"
+    "node": ">= 4"
   },
   "scripts": {
     "test": "mocha"
