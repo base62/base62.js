@@ -1,7 +1,6 @@
 # [Base62.js](http://libraries.io/npm/base62)
 [![build status](https://secure.travis-ci.org/andrew/base62.js.svg)](http://travis-ci.org/andrew/base62.js)
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
-[![Dependency Status](https://david-dm.org/andrew/base62.js.svg?theme=shields.io)](https://david-dm.org/andrew/base62.js)
 [![devDependency Status](https://david-dm.org/andrew/base62.js/dev-status.svg?theme=shields.io)](https://david-dm.org/andrew/base62.js#info=devDependencies)
 [![Gitter chat](http://img.shields.io/badge/gitter-andrew/base62.js-brightgreen.svg)](https://gitter.im/andrew/base62.js)
 
