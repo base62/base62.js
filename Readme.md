@@ -6,6 +6,17 @@
 
 A javascript Base62 encode/decoder for node.js
 
+## What is Base62 encoding?
+
+From [wikipedia](https://de.wikipedia.org/wiki/Base62):
+
+> Base62 is a priority system to the base 62, which for encoding large numbers using ASCII is character. The digits 0-9 (value 0-9), uppercase letters A-Z (value 10-35) and lowercase letters a-z (value 36-61) are used.
+
+> Due to the high number of base formed shorter strings than with the decimal or hexadecimal system , which mainly offers two advantages:
+
+> - They can be entered by a human being faster and with a smaller risk of error. In this case, a font should be selected in which characters that can be confused, such as small L and large i, or zero, and large O, are distinguishable.
+> - Length restrictions, eg when a number is to be used as part of an identifier or file name, can be bypassed. However, it should be noted that the processing system is case-sensitive.
+
 ## Install
 
 ```bash
