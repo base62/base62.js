@@ -12,6 +12,11 @@ A javascript Base62 encode/decoder for node.js
 ```bash
 npm install base62
 ```
+or for yarn:
+```bash
+yarn add base62
+```
+
 
 ## Usage
 
