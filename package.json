@@ -22,7 +22,8 @@
     "node": "*"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "benchmark": "node benchmark/benchmarks.js"
   },
   "devDependencies": {
     "mocha": "~3.4.1"

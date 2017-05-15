@@ -48,6 +48,7 @@ for (intResult = 0, i = 0; i < 1000000; i++) {
 }
 
 deltaTime = performanceNow() - now;
+
 console.log('|', 'decoding with custom charset (1000000x)', '|', intResult === 823118800000000 ? 'correct' : 'incorrect', '|', deltaTime.toFixed(2), 'ms', '|');
 
 //encode with custom charset
