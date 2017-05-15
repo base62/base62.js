@@ -37,10 +37,15 @@ module.exports = (function (Base62) {
     };
 
     var customCharsetDecode = function customCharsetDecode (base62String) {
-        var val = 0, base62Chars = base62String.split("").reverse();
-        base62Chars.forEach(function(character, index){
-            val += Base62.characterSet.indexOf(character) * Math.pow(62, index);
-        });
+        var val = 0,
+            i = 0,
+            length = base62String.length,
+            characterSet = Base62.characterSet;
+
+        for (; i < length; i++) {
+            val += characterSet.indexOf(base62String[i]) * Math.pow(62, length - i - 1);
+        }
+
         return val;
     };
 
