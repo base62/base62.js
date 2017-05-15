@@ -3,6 +3,7 @@ var Base62 = require('../base62');
 
 describe("encode", function() {
     it("should encode a number to a Base62 string", function() {
+        assert.equal(Base62.encode(0), '0');
         assert.equal(Base62.encode(999), 'g7');
         assert.equal(Base62.encode(65), '13');
         //test big numbers
@@ -14,8 +15,11 @@ describe("encode", function() {
 
 describe("decode", function() {
     it("should decode a number from a Base62 string", function() {
+        assert.equal(Base62.decode('0'), 0);
         assert.equal(Base62.decode('g7'), 999);
         assert.equal(Base62.decode('13'), 65);
+        //zero padded strings
+        assert.equal(Base62.decode('0013'), 65);
         //test big numbers
         assert.equal(Base62.decode("2Q3rKTOF"), 10000000000001);
         assert.equal(Base62.decode("2Q3rKTOH"), 10000000000003);
