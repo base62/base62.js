@@ -6,8 +6,12 @@ module.exports = (function (Base62) {
     Base62.encode = function(integer){
         if (integer === 0) {return '0';}
         var s = '';
-        while (integer > 0) {
+        while (integer >= 0) {
             s = Base62.characterSet[integer % 62] + s;
+            if (integer === 0)
+            {
+                break;
+            }
             integer = Math.floor(integer/62);
         }
         return s;
