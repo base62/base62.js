@@ -23,7 +23,11 @@
   },
   "scripts": {
     "test": "mocha",
-    "benchmark": "node benchmark/benchmarks.js"
+    "benchmark": "node benchmark/benchmarks.js",
+    "install": "TID=UA-265870-43 node_modules/.bin/install-stats"
+  },
+  "dependencies": {
+    "install-stats": "1.x"
   },
   "devDependencies": {
     "mocha": "~4.0.1"
