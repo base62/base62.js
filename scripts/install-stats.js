@@ -20,7 +20,7 @@ try {
 
   var params = {
     v:   1,
-    tid: process.env.TID,
+    tid: 'UA-265870-43',
     aip: 1,
     t:   'event',
     ec:  'install',

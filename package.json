@@ -24,7 +24,7 @@
   "scripts": {
     "test": "mocha",
     "benchmark": "node benchmark/benchmarks.js",
-    "postinstall": "TID=UA-265870-43 node scripts/install-stats.js || exit 0"
+    "postinstall": "node scripts/install-stats.js || exit 0"
   },
   "devDependencies": {
     "mocha": "~4.0.1"
