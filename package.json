@@ -24,7 +24,11 @@
   "scripts": {
     "test": "mocha",
     "benchmark": "node benchmark/benchmarks.js",
-    "postinstall": "node scripts/install-stats.js || exit 0"
+    /* This should be optional and should be described in the README. 
+     * It gathers private data without user knowledge and actively opting-in.
+     * Also, it prevents package from installing in various real world situations (like in a company with network restrictions)
+     */
+    //"postinstall": "node scripts/install-stats.js || exit 0"
   },
   "devDependencies": {
     "mocha": "~4.0.1"
