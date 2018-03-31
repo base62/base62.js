@@ -9,6 +9,9 @@ env:
   jquery: true
   node: true
 
+parserOptions:
+  sourceType: module
+
 # http://eslint.org/docs/rules/
 rules:
   # Possible Errors

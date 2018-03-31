@@ -17,15 +17,17 @@
     "url": "https://github.com/andrew/base62.js/issues"
   },
   "homepage": "https://github.com/andrew/base62.js",
-  "main": "base62.js",
+  "main": "src/legacy.js",
+  "module": "src/ascii.js",
   "engines": {
     "node": "*"
   },
   "scripts": {
-    "test": "mocha",
-    "benchmark": "node benchmark/benchmarks.js"
+    "test": "mocha -r esm",
+    "benchmark": "node -r esm benchmark/benchmarks.js; echo; node -r esm benchmark/benchmarks_legacy.js"
   },
   "devDependencies": {
+    "esm": "~3.0.15",
     "mocha": "~5.0.5"
   }
 }
