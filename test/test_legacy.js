@@ -1,5 +1,5 @@
-import Base62 from "../src/legacy";
-import assert from "assert";
+var Base62 = require("../");
+var assert = require("assert");
 
 describe("encode", function() {
     it("should encode a number to a Base62 string", function() {

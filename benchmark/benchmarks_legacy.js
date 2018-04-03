@@ -1,4 +1,4 @@
-import base62 from "../";
+var base62 = require("../");
 
 var now = 0,
     deltaTime = 0,

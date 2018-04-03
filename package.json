@@ -24,8 +24,8 @@
   },
   "scripts": {
     "dist": "rollup -c rollup.config.js",
-    "test": "mocha -r esm",
-    "benchmark": "node -r esm benchmark/benchmarks.js; echo; node -r esm benchmark/benchmarks_legacy.js"
+    "test": "mocha test/test_legacy.js && mocha -r esm",
+    "benchmark": "node -r esm benchmark/benchmarks.js; echo; node benchmark/benchmarks_legacy.js"
   },
   "devDependencies": {
     "esm": "~3.0.15",
