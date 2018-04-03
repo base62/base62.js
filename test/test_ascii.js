@@ -2,10 +2,10 @@
 import { encode, decode } from "../src/ascii";
 import assert from "assert";
 
-let assertSame = assert.strictEqual;
+var assertSame = assert.strictEqual;
 
-describe("Base62 codec (ASCII)", _ => {
-    it("should encode numbers", () => {
+describe("Base62 codec (ASCII)", function() {
+    it("should encode numbers", function() {
         assertSame(encode(0), "0");
         assertSame(encode(7), "7");
         assertSame(encode(16), "g");
@@ -17,7 +17,7 @@ describe("Base62 codec (ASCII)", _ => {
         assertSame(encode(10000000000002), "2Q3rKTOG");
     });
 
-    it("should decode strings", () => {
+    it("should decode strings", function() {
         assertSame(decode("0"), 0);
         assertSame(decode("7"), 7);
         assertSame(decode("g"), 16);

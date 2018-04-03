@@ -21,11 +21,11 @@ function encode(int) {
 }
 
 function decode(str) {
-    var res = 0;
-    var length = str.length;
-
-    for (var i = 0; i < length; i++) {
-        var char = str.charCodeAt(i);
+    var res = 0,
+        length = str.length,
+        i, char;
+    for (i = 0; i < length; i++) {
+        char = str.charCodeAt(i);
         if (char < 58) {
             char = char - 48;
         } else if (char < 91) {
@@ -38,9 +38,8 @@ function decode(str) {
     return res;
 }
 
-function encode$1(int, _ref) {
-    var byCode = _ref.byCode;
-
+function encode$1(int, charset) {
+    let byCode = charset.byCode;
     if (int === 0) {
         return byCode[0];
     }
@@ -53,25 +52,25 @@ function encode$1(int, _ref) {
     return res;
 }
 
-function decode$1(str, _ref2) {
-    var byChar = _ref2.byChar;
-
-    var res = 0;
-    var length = str.length;
-
-    for (var i = 0; i < length; i++) {
-        var char = str[i];
-        res += byChar[char] * Math.pow(62, length - i - 1);
+function decode$1(str, charset) {
+    var byChar = charset.byChar,
+        res = 0,
+        length = str.length,
+        i, char;
+    for (i = 0; i < length; i++) {
+        char = str[i];
+        res += byChar[char] * Math.pow(62, (length - i - 1));
     }
     return res;
 }
 
 
 function indexCharset(str) {
-    var byCode = {};
-    var byChar = {};
-    for (var i = 0; i < str.length; i++) {
-        var char = str[i];
+    var byCode = {},
+        byChar = {},
+        i, char;
+    for (i = 0; i < str.length; i++) {
+        char = str[i];
         byCode[i] = char;
         byChar[char] = i;
     }
@@ -79,32 +78,26 @@ function indexCharset(str) {
 }
 
 var Base62 = {
-    encode: encode,
-    decode: decode,
-    setCharacterSet: function setCharacterSet(charset) {
-        if (charset.length !== 62) {
+    encode,
+    decode,
+    setCharacterSet: function(charset) {
+        if(charset.length !== 62) {
             throw Error("You must supply 62 characters.");
         }
 
         var uniq = {};
-        for (var i = 0; i < charset.length; i++) {
-            var char = charset[i];
-            if (uniq[char]) {
+        var i, char;
+        for(i = 0; i < charset.length; i++) {
+            char = charset[i];
+            if(uniq[char]) {
                 throw Error("You must use unique characters.");
             }
             uniq[char] = true;
         }
 
         charset = indexCharset(charset);
-        var encode$$1 = encode$1,
-            decode$$1 = decode$1;
-
-        Base62.encode = function (value) {
-            return encode$$1(value, charset);
-        };
-        Base62.decode = function (value) {
-            return decode$$1(value, charset);
-        };
+        Base62.encode = function(value) { return encode$1(value, charset) };
+        Base62.decode = function(value) { return decode$1(value, charset) };
     }
 };
 

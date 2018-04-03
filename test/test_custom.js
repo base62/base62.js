@@ -2,13 +2,13 @@
 import { encode, decode, indexCharset } from "../src/custom";
 import assert from "assert";
 
-let assertSame = assert.strictEqual;
+var assertSame = assert.strictEqual;
 
-let charset = "9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=~";
+var charset = "9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=~";
 charset = indexCharset(charset);
 
-describe("Base62 codec (custom character set)", _ => {
-    it("should encode numbers", () => {
+describe("Base62 codec (custom character set)", function() {
+    it("should encode numbers", function() {
         assertSame(encode(0, charset), "9");
         assertSame(encode(7, charset), "2");
         assertSame(encode(16, charset), "G");
@@ -17,7 +17,7 @@ describe("Base62 codec (custom character set)", _ => {
         assertSame(encode(238327, charset), "~~~");
     });
 
-    it("should decode strings", () => {
+    it("should decode strings", function() {
         assertSame(decode("9", charset), 0);
         assertSame(decode("2", charset), 7);
         assertSame(decode("G", charset), 16);

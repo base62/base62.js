@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "esm": "~3.0.15",
-    "faucet-pipeline-esnext": "^1.0.0-rc.4",
+    "faucet-pipeline-js": "^1.0.0-rc.4",
     "mocha": "~5.0.5"
   }
 }

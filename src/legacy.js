@@ -2,17 +2,18 @@ import { encode, decode } from "./ascii";
 import * as custom from "./custom";
 
 // v1.x API
-let Base62 = { // NB: mutable singleton
+var Base62 = { // NB: mutable singleton
     encode,
     decode,
-    setCharacterSet: charset => {
+    setCharacterSet: function(charset) {
         if(charset.length !== 62) {
             throw Error("You must supply 62 characters.");
         }
 
-        let uniq = {}; // poor man's `Set`
-        for(let i = 0; i < charset.length; i++) {
-            let char = charset[i];
+        var uniq = {}; // poor man's `Set`
+        var i, char;
+        for(i = 0; i < charset.length; i++) {
+            char = charset[i];
             if(uniq[char]) {
                 throw Error("You must use unique characters.");
             }
@@ -20,9 +21,8 @@ let Base62 = { // NB: mutable singleton
         }
 
         charset = custom.indexCharset(charset);
-        let { encode, decode } = custom;
-        Base62.encode = value => encode(value, charset);
-        Base62.decode = value => decode(value, charset);
+        Base62.encode = function(value) { return custom.encode(value, charset) };
+        Base62.decode = function(value) { return custom.decode(value, charset) };
     }
 };
 

@@ -1,11 +1,11 @@
 import { encode, decode } from '../src/ascii';
 import { encode as encodeCustom, decode as decodeCustom, indexCharset } from '../src/custom';
 
-let intResult, strResult, now, delta, i;
-let charset = indexCharset('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+var intResult, strResult, now, delta, i;
+var charset = indexCharset('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
 
 function performanceNow() {
-    let t = process.hrtime();
+    var t = process.hrtime();
     return t[0] * 1000 + t[1] / 1000000;
 }
 

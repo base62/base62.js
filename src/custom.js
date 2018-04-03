@@ -1,10 +1,11 @@
 // NB: does not validate input
-export function encode(int, { byCode }) {
+export function encode(int, charset) {
+    let byCode = charset.byCode;
     if (int === 0) {
         return byCode[0];
     }
 
-    let res = "";
+    var res = "";
     while (int > 0) {
         res = byCode[int % 62] + res;
         int = Math.floor(int / 62);
@@ -12,24 +13,27 @@ export function encode(int, { byCode }) {
     return res;
 }
 
-export function decode(str, { byChar }) {
-    let res = 0;
-    let { length } = str;
-    for (let i = 0; i < length; i++) {
-        let char = str[i];
-        res += byChar[char] * (62 ** (length - i - 1));
+export function decode(str, charset) {
+    var byChar = charset.byChar,
+        res = 0,
+        length = str.length,
+        i, char;
+    for (i = 0; i < length; i++) {
+        char = str[i];
+        res += byChar[char] * Math.pow(62, (length - i - 1));
     }
     return res;
 }
 
 // NB: does not validate input
 export function indexCharset(str) {
-    let byCode = {};
-    let byChar = {};
-    for (let i = 0; i < str.length; i++) {
-        let char = str[i];
+    var byCode = {},
+        byChar = {},
+        i, char;
+    for (i = 0; i < str.length; i++) {
+        char = str[i];
         byCode[i] = char;
         byChar[char] = i;
     }
-    return { byCode, byChar };
+    return { byCode: byCode, byChar: byChar };
 }

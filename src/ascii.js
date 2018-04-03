@@ -1,4 +1,4 @@
-let CHARSET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var CHARSET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 // NB: does not validate input
 export function encode(int) {
@@ -6,7 +6,7 @@ export function encode(int) {
         return CHARSET[0];
     }
 
-    let res = "";
+    var res = "";
     while (int > 0) {
         res = CHARSET[int % 62] + res;
         int = Math.floor(int / 62);
@@ -15,10 +15,11 @@ export function encode(int) {
 }
 
 export function decode(str) {
-    let res = 0;
-    let { length } = str;
-    for (let i = 0; i < length; i++) {
-        let char = str.charCodeAt(i);
+    var res = 0,
+        length = str.length,
+        i, char;
+    for (i = 0; i < length; i++) {
+        char = str.charCodeAt(i);
         if (char < 58) {
             char = char - 48;
         } else if (char < 91) {
@@ -26,7 +27,7 @@ export function decode(str) {
         } else {
             char = char - 87;
         }
-        res += char * (62 ** (length - i - 1));
+        res += char * Math.pow(62, length - i - 1);
     }
     return res;
 }
