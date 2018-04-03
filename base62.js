@@ -1,12 +1,8 @@
 'use strict';
 
-if(typeof global === "undefined" && typeof window !== "undefined") {
-	window.global = window;
-}
-
 var CHARSET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-
+// NB: does not validate input
 function encode(int) {
     if (int === 0) {
         return CHARSET[0];
@@ -38,6 +34,7 @@ function decode(str) {
     return res;
 }
 
+// NB: does not validate input
 function encode$1(int, charset) {
     let byCode = charset.byCode;
     if (int === 0) {
@@ -64,7 +61,7 @@ function decode$1(str, charset) {
     return res;
 }
 
-
+// NB: does not validate input
 function indexCharset(str) {
     var byCode = {},
         byChar = {},
@@ -77,7 +74,8 @@ function indexCharset(str) {
     return { byCode: byCode, byChar: byChar };
 }
 
-var Base62 = {
+// v1.x API
+var Base62 = { // NB: mutable singleton
     encode,
     decode,
     setCharacterSet: function(charset) {
@@ -85,7 +83,7 @@ var Base62 = {
             throw Error("You must supply 62 characters.");
         }
 
-        var uniq = {};
+        var uniq = {}; // poor man's `Set`
         var i, char;
         for(i = 0; i < charset.length; i++) {
             char = charset[i];

@@ -23,13 +23,13 @@
     "node": "*"
   },
   "scripts": {
-    "dist": "faucet --compact",
+    "dist": "rollup -c rollup.config.js",
     "test": "mocha -r esm",
     "benchmark": "node -r esm benchmark/benchmarks.js; echo; node -r esm benchmark/benchmarks_legacy.js"
   },
   "devDependencies": {
     "esm": "~3.0.15",
-    "faucet-pipeline-js": "^1.0.0-rc.4",
-    "mocha": "~5.0.5"
+    "mocha": "~5.0.5",
+    "rollup": "~0.57.1"
   }
 }
