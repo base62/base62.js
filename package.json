@@ -20,7 +20,7 @@
   "main": "base62.js",
   "module": "src/ascii.js",
   "engines": {
-    "node": "*"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "dist": "rollup -c rollup.config.js",
