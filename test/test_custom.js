@@ -1,7 +1,7 @@
 /* global describe, it */
 "use strict";
 
-var base62 = require("../src/custom");
+var base62 = require("../lib/custom");
 var assert = require("assert");
 
 var encode = base62.encode;

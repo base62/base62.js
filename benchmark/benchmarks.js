@@ -1,5 +1,5 @@
-var base62 = require('../src/ascii');
-var base62custom = require('../src/custom');
+var base62 = require('../lib/ascii');
+var base62custom = require('../lib/custom');
 
 var encode = base62.encode;
 var decode = base62.decode;

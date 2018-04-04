@@ -17,7 +17,7 @@
     "url": "https://github.com/andrew/base62.js/issues"
   },
   "homepage": "https://github.com/andrew/base62.js",
-  "main": "./src/legacy.js",
+  "main": "./lib/legacy.js",
   "engines": {
     "node": ">=6.0.0"
   },
