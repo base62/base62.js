@@ -1,3 +1,5 @@
+"use strict";
+
 var Base62 = require("../");
 var assert = require("assert");
 

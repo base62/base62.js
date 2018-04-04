@@ -1,5 +1,11 @@
-import { encode, decode } from '../src/ascii';
-import { encode as encodeCustom, decode as decodeCustom, indexCharset } from '../src/custom';
+var base62 = require('../src/ascii');
+var base62custom = require('../src/custom');
+
+var encode = base62.encode;
+var decode = base62.decode;
+var encodeCustom = base62custom.encode;
+var decodeCustom = base62custom.decode;
+var indexCharset = base62custom.indexCharset;
 
 var intResult, strResult, now, delta, i;
 var charset = indexCharset('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');

@@ -1,5 +1,7 @@
+"use strict";
+
 // NB: does not validate input
-export function encode(int, charset) {
+exports.encode = function encode(int, charset) {
     let byCode = charset.byCode;
     if (int === 0) {
         return byCode[0];
@@ -11,9 +13,9 @@ export function encode(int, charset) {
         int = Math.floor(int / 62);
     }
     return res;
-}
+};
 
-export function decode(str, charset) {
+exports.decode = function decode(str, charset) {
     var byChar = charset.byChar,
         res = 0,
         length = str.length,
@@ -23,10 +25,10 @@ export function decode(str, charset) {
         res += byChar[char] * Math.pow(62, (length - i - 1));
     }
     return res;
-}
+};
 
 // NB: does not validate input
-export function indexCharset(str) {
+exports.indexCharset = function indexCharset(str) {
     var byCode = {},
         byChar = {},
         i, char;
@@ -36,4 +38,4 @@ export function indexCharset(str) {
         byChar[char] = i;
     }
     return { byCode: byCode, byChar: byChar };
-}
+};

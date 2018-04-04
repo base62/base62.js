@@ -1,11 +1,15 @@
 /* global describe, it */
-import { encode, decode, indexCharset } from "../src/custom";
-import assert from "assert";
+"use strict";
 
+var base62 = require("../src/custom");
+var assert = require("assert");
+
+var encode = base62.encode;
+var decode = base62.decode;
 var assertSame = assert.strictEqual;
 
 var charset = "9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=~";
-charset = indexCharset(charset);
+charset = base62.indexCharset(charset);
 
 describe("Base62 codec (custom character set)", function() {
     it("should encode numbers", function() {

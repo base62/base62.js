@@ -1,7 +1,11 @@
 /* global describe, it */
-import { encode, decode } from "../src/ascii";
-import assert from "assert";
+"use strict";
 
+var base62 = require("../src/ascii");
+var assert = require("assert");
+
+var encode = base62.encode;
+var decode = base62.decode;
 var assertSame = assert.strictEqual;
 
 describe("Base62 codec (ASCII)", function() {

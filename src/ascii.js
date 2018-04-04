@@ -1,7 +1,9 @@
+"use strict";
+
 var CHARSET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 // NB: does not validate input
-export function encode(int) {
+exports.encode = function encode(int) {
     if (int === 0) {
         return CHARSET[0];
     }
@@ -12,9 +14,9 @@ export function encode(int) {
         int = Math.floor(int / 62);
     }
     return res;
-}
+};
 
-export function decode(str) {
+exports.decode = function decode(str) {
     var res = 0,
         length = str.length,
         i, char;
@@ -30,4 +32,4 @@ export function decode(str) {
         res += char * Math.pow(62, length - i - 1);
     }
     return res;
-}
+};

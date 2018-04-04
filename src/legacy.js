@@ -1,10 +1,12 @@
-import { encode, decode } from "./ascii";
-import * as custom from "./custom";
+"use strict";
+
+var base62 = require("./ascii");
+var base62custom = require("./custom");
 
 // v1.x API
 var Base62 = { // NB: mutable singleton
-    encode,
-    decode,
+    encode: base62.encode,
+    decode: base62.decode,
     setCharacterSet: function(charset) {
         if(charset.length !== 62) {
             throw Error("You must supply 62 characters.");
@@ -20,10 +22,10 @@ var Base62 = { // NB: mutable singleton
             uniq[char] = true;
         }
 
-        charset = custom.indexCharset(charset);
-        Base62.encode = function(value) { return custom.encode(value, charset) };
-        Base62.decode = function(value) { return custom.decode(value, charset) };
+        charset = base62custom.indexCharset(charset);
+        Base62.encode = function(value) { return base62custom.encode(value, charset) };
+        Base62.decode = function(value) { return base62custom.decode(value, charset) };
     }
 };
 
-export default Base62;
+module.exports = Base62;
