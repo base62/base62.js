@@ -4,64 +4,104 @@
 [![devDependency Status](https://david-dm.org/andrew/base62.js/dev-status.svg?theme=shields.io)](https://david-dm.org/andrew/base62.js#info=devDependencies)
 [![Gitter chat](http://img.shields.io/badge/gitter-andrew/base62.js-brightgreen.svg)](https://gitter.im/andrew/base62.js)
 
-A javascript Base62 encode/decoder for node.js
+A JavaScript Base62 encode/decoder
+
 
 ## What is Base62 encoding?
 
-From [wikipedia](https://de.wikipedia.org/wiki/Base62):
+Base62 encoding converts numbers using ASCII characters (0-9, A-Z and a-z),
+which typically results in comparatively short strings. Such identifiers also
+tend to more readily identifiable by humans.
 
-> Base62 is a priority system to the base 62, which for encoding large numbers using ASCII is character. The digits 0-9 (value 0-9), uppercase letters A-Z (value 10-35) and lowercase letters a-z (value 36-61) are used.
 
-> Due to the high number of base formed shorter strings than with the decimal or hexadecimal system , which mainly offers two advantages:
+## Installation
 
-> - They can be entered by a human being faster and with a smaller risk of error. In this case, a font should be selected in which characters that can be confused, such as small L and large i, or zero, and large O, are distinguishable.
-> - Length restrictions, eg when a number is to be used as part of an identifier or file name, can be bypassed. However, it should be noted that the processing system is case-sensitive.
-
-## Install
-
-```bash
+```shell
 npm install base62
 ```
-or for yarn:
-```bash
+
+alternatively using Yarn:
+
+```shell
 yarn add base62
 ```
 
 
 ## Usage
 
-### Default Character Set Example
+For backwards compatibility, Base62.js exposes v1.x's API by default – see
+[Legacy API](#legacy-api) below. For efficiency, v2.x's modernized API allows
+selectively importing individual modules instead:
 
 ```javascript
-Base62 = require('base62')
-Base62.encode(999)  // 'g7'
-Base62.decode('g7') // 999
+var base62 = require("base62/lib/ascii");
+
+Base62.encode(999);  // "g7"
+Base62.decode("g7"); // 999
 ```
 
-### Custom Character Set Example
+This uses the default **ASCII character set** for encoding/decoding.
 
-The default character set is `0-9a-zA-Z`. This can be updated to a custom character set. Naturally, it must be 62 characters long.
-
-Instead of the character set `0-9a-zA-Z` you want to use `0-9A-Za-z`, call the `setCharacterSet()` method on the Base62 object passing in the string `"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"`. Note that all characters must be unique.
+It's also possible to define a **custom character set** instead:
 
 ```javascript
-Base62 = require('base62')
-Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-Base62.encode(999)  // 'G7'
-Base62.decode('G7') // 999
+var base62 = require("base62/lib/custom");
+
+var charset = "~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=";
+charset = base62.indexCharset(charset);
+
+Base62.encode(999, charset);  // "F3"
+Base62.decode("F3", charset); // 999
 ```
+
+Note that `indexCharset` requires the respective string to contain exactly 62
+unique character, but does not validate this for efficieny.
+
+
+### Legacy API
+
+Base62.js v1.x's API is maintained for backwards compatibility.
+
+```javascript
+var Base62 = require("base62");
+
+Base62.encode(999);  // "g7"
+Base62.decode("g7"); // 999
+```
+
+This uses the default **ASCII character set** for encoding/decoding.
+
+It's also possible to define a **custom character set** instead:
+
+```javascript
+var Base62 = require("base62");
+
+var charset = "~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=";
+Base62.setCharacterSet(charset);
+
+Base62.encode(999);  // "F3"
+Base62.decode("F3"); // 999
+```
+
+`setCharacterSet` ensures that the respective string contains exactly 62 unique
+characters.
+
 
 ## Development
 
-Source hosted at [GitHub](http://github.com/andrew/base62.js).
-Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/base62.js).
+Source code is hosted on [GitHub](http://github.com/andrew/base62.js).
+Please report issues or feature requests in
+[GitHub Issues](http://github.com/andrew/base62.js.issues).
+
 
 ### Note on Patches/Pull Requests
 
  * Fork the project.
  * Make your feature addition or bug fix.
- * Add tests for it. This is important so I don't break it in a future version unintentionally.
+ * Add tests for it. This is important so I don't break it in a future version
+   unintentionally.
  * Send me a pull request. Bonus points for topic branches.
+
 
 ## Copyright
 
