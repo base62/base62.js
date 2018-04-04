@@ -12,6 +12,10 @@ engines:
     enabled: true
   fixme:
     enabled: true
+checks:
+  similar-code:
+    config:
+      threshold: 50
 ratings:
   paths:
   - "**.inc"
@@ -22,5 +26,6 @@ ratings:
   - "**.py"
   - "**.rb"
 exclude_paths:
+- base62.js
 - test/
 - benchmark/
