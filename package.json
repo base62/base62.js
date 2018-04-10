@@ -1,7 +1,7 @@
 {
   "author": "Andrew Nesbitt <andrewnez@gmail.com> (http://nesbitt.io)",
   "name": "base62",
-  "description": "Javascript Base62 encode/decoder",
+  "description": "JavaScript Base62 encode/decoder",
   "keywords": [
     "base-62",
     "encoder",
@@ -17,15 +17,15 @@
     "url": "https://github.com/andrew/base62.js/issues"
   },
   "homepage": "https://github.com/andrew/base62.js",
-  "main": "base62.js",
+  "main": "./lib/legacy.js",
   "engines": {
-    "node": "*"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "test": "mocha",
-    "benchmark": "node benchmark/benchmarks.js"
+    "benchmark": "node benchmark/benchmarks.js; echo; node benchmark/benchmarks_legacy.js"
   },
   "devDependencies": {
-    "mocha": "~4.0.1"
+    "mocha": "~5.0.5"
   }
 }

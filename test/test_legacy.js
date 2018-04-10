@@ -1,5 +1,7 @@
-var assert = require('assert');
-var Base62 = require('../base62');
+"use strict";
+
+var Base62 = require("../");
+var assert = require("assert");
 
 describe("encode", function() {
     it("should encode a number to a Base62 string", function() {
