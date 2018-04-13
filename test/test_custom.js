@@ -30,3 +30,17 @@ describe("Base62 codec (custom character set)", function() {
         assertSame(decode("~~~", charset), 238327);
     });
 });
+
+describe("arbitrary-length charsets (e.g. Base66)", function() {
+    var ascii = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var charset = ascii + "äöüß";
+    charset = base62.indexCharset(charset);
+
+    it("should encode numbers", function() {
+        assertSame(encode(65, charset), "ß");
+    });
+
+    it("should decode strings", function() {
+        assertSame(decode("ß", charset), 65);
+    });
+});

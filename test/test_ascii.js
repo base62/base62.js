@@ -13,6 +13,7 @@ describe("Base62 codec (ASCII)", function() {
         assertSame(encode(0), "0");
         assertSame(encode(7), "7");
         assertSame(encode(16), "g");
+        assertSame(encode(61), "Z");
         assertSame(encode(65), "13");
         assertSame(encode(999), "g7");
         assertSame(encode(9999), "2Bh");
@@ -25,6 +26,7 @@ describe("Base62 codec (ASCII)", function() {
         assertSame(decode("0"), 0);
         assertSame(decode("7"), 7);
         assertSame(decode("g"), 16);
+        assertSame(decode("Z"), 61);
         assertSame(decode("13"), 65);
         assertSame(decode("0013"), 65); // ignore leading zeros
         assertSame(decode("g7"), 999);
