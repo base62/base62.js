@@ -9,9 +9,13 @@ A JavaScript Base62 encode/decoder
 
 ## What is Base62 encoding?
 
-Base62 encoding converts numbers using ASCII characters (0-9, A-Z and a-z),
-which typically results in comparatively short strings. Such identifiers also
-tend to more readily identifiable by humans.
+Base62 encoding converts numbers to ASCII strings (0-9, a-z and A-Z) and vice
+versa, which typically results in comparatively short strings. Such identifiers
+also tend to more readily identifiable by humans.
+
+* `999` ≙ `"g7"`
+* `9999` ≙ `"2Bh"`
+* `238327` ≙ `"ZZZ"`
 
 
 ## Installation
@@ -54,8 +58,10 @@ Base62.encode(999, charset);  // "F3"
 Base62.decode("F3", charset); // 999
 ```
 
-Note that `indexCharset` requires the respective string to contain exactly 62
-unique character, but does not validate this for efficieny.
+Note that `indexCharset` typically expects the respective string to contain
+exactly 62 unique character, but does not validate this for efficieny. In fact,
+it's also possible to use characters sets with more than 62 characters in order
+to achieve shorter identifiers for large numbers.
 
 
 ### Legacy API
