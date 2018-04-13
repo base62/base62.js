@@ -109,6 +109,15 @@ Please report issues or feature requests in
  * Send me a pull request. Bonus points for topic branches.
 
 
+### Release Process for Maintainers
+
+ * Update the version number in `package.json`.
+ * Commit this change with the respective version number as commit message
+   (e.g. "1.2.3").
+ * Create a tag, using the prefixed version number (e.g. `git tag v1.2.3`).
+ * Publish the new version: `git push --tags origin master` and `npm publish`.
+
+
 ## Copyright
 
 Copyright (c) 2016 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/base62.js/blob/master/LICENSE) for details.
