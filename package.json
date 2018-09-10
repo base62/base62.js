@@ -26,6 +26,6 @@
     "benchmark": "node benchmark/benchmarks.js; echo; node benchmark/benchmarks_legacy.js"
   },
   "devDependencies": {
-    "mocha": "~5.1.0"
+    "mocha": "~5.2.0"
   }
 }
