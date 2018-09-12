@@ -52,7 +52,7 @@ It's also possible to define a **custom character set** instead:
 var Base62 = require("base62/lib/custom");
 
 var charset = "~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=";
-charset = base62.indexCharset(charset);
+charset = Base62.indexCharset(charset);
 
 Base62.encode(999, charset);  // "F3"
 Base62.decode("F3", charset); // 999
