@@ -38,7 +38,7 @@ For backwards compatibility, Base62.js exposes v1.x's API by default – see
 selectively importing individual modules instead:
 
 ```javascript
-var base62 = require("base62/lib/ascii");
+var Base62 = require("base62/lib/ascii");
 
 Base62.encode(999);  // "g7"
 Base62.decode("g7"); // 999
@@ -49,7 +49,7 @@ This uses the default **ASCII character set** for encoding/decoding.
 It's also possible to define a **custom character set** instead:
 
 ```javascript
-var base62 = require("base62/lib/custom");
+var Base62 = require("base62/lib/custom");
 
 var charset = "~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=";
 charset = base62.indexCharset(charset);
