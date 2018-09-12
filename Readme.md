@@ -40,8 +40,8 @@ selectively importing individual modules instead:
 ```javascript
 var base62 = require("base62/lib/ascii");
 
-Base62.encode(999);  // "g7"
-Base62.decode("g7"); // 999
+base62.encode(999);  // "g7"
+base62.decode("g7"); // 999
 ```
 
 This uses the default **ASCII character set** for encoding/decoding.
@@ -54,8 +54,8 @@ var base62 = require("base62/lib/custom");
 var charset = "~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=";
 charset = base62.indexCharset(charset);
 
-Base62.encode(999, charset);  // "F3"
-Base62.decode("F3", charset); // 999
+base62.encode(999, charset);  // "F3"
+base62.decode("F3", charset); // 999
 ```
 
 Note that `indexCharset` typically expects the respective string to contain
@@ -69,10 +69,10 @@ to achieve shorter identifiers for large numbers.
 Base62.js v1.x's API is maintained for backwards compatibility.
 
 ```javascript
-var Base62 = require("base62");
+var base62 = require("base62");
 
-Base62.encode(999);  // "g7"
-Base62.decode("g7"); // 999
+base62.encode(999);  // "g7"
+base62.decode("g7"); // 999
 ```
 
 This uses the default **ASCII character set** for encoding/decoding.
@@ -80,13 +80,13 @@ This uses the default **ASCII character set** for encoding/decoding.
 It's also possible to define a **custom character set** instead:
 
 ```javascript
-var Base62 = require("base62");
+var base62 = require("base62");
 
 var charset = "~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=";
-Base62.setCharacterSet(charset);
+base62.setCharacterSet(charset);
 
-Base62.encode(999);  // "F3"
-Base62.decode("F3"); // 999
+base62.encode(999);  // "F3"
+base62.decode("F3"); // 999
 ```
 
 `setCharacterSet` ensures that the respective string contains exactly 62 unique
