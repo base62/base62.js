@@ -1,8 +1,8 @@
 # [Base62.js](http://libraries.io/npm/base62)
-[![build status](https://secure.travis-ci.org/andrew/base62.js.svg)](http://travis-ci.org/andrew/base62.js)
+[![build status](https://secure.travis-ci.org/base62/base62.js.svg)](http://travis-ci.org/base62/base62.js)
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
-[![devDependency Status](https://david-dm.org/andrew/base62.js/dev-status.svg?theme=shields.io)](https://david-dm.org/andrew/base62.js#info=devDependencies)
-[![Gitter chat](http://img.shields.io/badge/gitter-andrew/base62.js-brightgreen.svg)](https://gitter.im/andrew/base62.js)
+[![devDependency Status](https://david-dm.org/base62/base62.js/dev-status.svg?theme=shields.io)](https://david-dm.org/base62/base62.js#info=devDependencies)
+[![Gitter chat](http://img.shields.io/badge/gitter-base62/base62.js-brightgreen.svg)](https://gitter.im/base62/base62.js)
 
 A JavaScript Base62 encode/decoder
 
@@ -95,9 +95,9 @@ characters.
 
 ## Development
 
-Source code is hosted on [GitHub](http://github.com/andrew/base62.js).
+Source code is hosted on [GitHub](http://github.com/base62/base62.js).
 Please report issues or feature requests in
-[GitHub Issues](http://github.com/andrew/base62.js.issues).
+[GitHub Issues](http://github.com/base62/base62.js.issues).
 
 
 ### Note on Patches/Pull Requests
@@ -121,4 +121,4 @@ Please report issues or feature requests in
 
 ## Copyright
 
-Copyright (c) 2016 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/base62.js/blob/master/LICENSE) for details.
+Copyright (c) 2016 Andrew Nesbitt. See [LICENSE](https://github.com/base62/base62.js/blob/master/LICENSE) for details.
