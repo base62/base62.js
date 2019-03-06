@@ -37,10 +37,14 @@ describe("arbitrary-length charsets (e.g. Base66)", function() {
     charset = base62.indexCharset(charset);
 
     it("should encode numbers", function() {
+        assertSame(encode(10, charset), "A");
         assertSame(encode(65, charset), "ß");
+        assertSame(encode(70, charset), "14");
     });
 
     it("should decode strings", function() {
+        assertSame(decode("A", charset), 10);
         assertSame(decode("ß", charset), 65);
+        assertSame(decode("14", charset), 70);
     });
 });
