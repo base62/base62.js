@@ -8,7 +8,7 @@
     "decoder"
   ],
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/base62/base62.js.git"
@@ -26,6 +26,6 @@
     "benchmark": "node benchmark/benchmarks.js; echo; node benchmark/benchmarks_legacy.js"
   },
   "devDependencies": {
-    "mocha": "~5.2.0"
+    "mocha": "~6.0.2"
   }
 }
