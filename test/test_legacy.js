@@ -24,7 +24,7 @@ describe("decode", function() {
         assert.equal(Base62.decode('0013'), 65);
         //test big numbers
         assert.equal(Base62.decode("2q3Rktof"), 10000000000001);
-        assert.equal(Base62.decode("2q3Rktog"), 10000000000003);
+        assert.equal(Base62.decode("2q3Rktoh"), 10000000000003);
     });
 });
 
