@@ -13,9 +13,9 @@ Base62 encoding converts numbers to ASCII strings (0-9, a-z and A-Z) and vice
 versa, which typically results in comparatively short strings. Such identifiers
 also tend to more readily identifiable by humans.
 
-* `999` ≙ `"g7"`
-* `9999` ≙ `"2Bh"`
-* `238327` ≙ `"ZZZ"`
+* `999` ≙ `"G7"`
+* `9999` ≙ `"2bH"`
+* `238327` ≙ `"zzz"`
 
 
 ## Installation
@@ -40,8 +40,8 @@ selectively importing individual modules instead:
 ```javascript
 var base62 = require("base62/lib/ascii");
 
-base62.encode(999);  // "g7"
-base62.decode("g7"); // 999
+base62.encode(999);  // "G7"
+base62.decode("G7"); // 999
 ```
 
 This uses the default **ASCII character set** for encoding/decoding.
@@ -71,8 +71,8 @@ Base62.js v1.x's API is maintained for backwards compatibility.
 ```javascript
 var base62 = require("base62");
 
-base62.encode(999);  // "g7"
-base62.decode("g7"); // 999
+base62.encode(999);  // "G7"
+base62.decode("G7"); // 999
 ```
 
 This uses the default **ASCII character set** for encoding/decoding.
