@@ -33,6 +33,6 @@ describe("Base62 codec (ASCII)", function() {
         assertSame(decode("2bH"), 9999);
         assertSame(decode("zzz"), 238327);
         assertSame(decode("2q3Rktof"), 10000000000001);
-        assertSame(decode("2q3Rktog"), 10000000000003);
+        assertSame(decode("2q3Rktoh"), 10000000000003);
     });
 });
