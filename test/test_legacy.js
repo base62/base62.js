@@ -6,11 +6,11 @@ var assert = require("assert");
 describe("encode", function() {
     it("should encode a number to a Base62 string", function() {
         assert.equal(Base62.encode(0), '0');
-        assert.equal(Base62.encode(999), 'g7');
+        assert.equal(Base62.encode(999), 'G7');
         assert.equal(Base62.encode(65), '13');
         //test big numbers
-        assert.equal(Base62.encode(10000000000001), "2Q3rKTOF");
-        assert.equal(Base62.encode(10000000000002), "2Q3rKTOG");
+        assert.equal(Base62.encode(10000000000001), "2q3Rktof");
+        assert.equal(Base62.encode(10000000000002), "2q3Rktog");
 
     });
 });
@@ -18,13 +18,13 @@ describe("encode", function() {
 describe("decode", function() {
     it("should decode a number from a Base62 string", function() {
         assert.equal(Base62.decode('0'), 0);
-        assert.equal(Base62.decode('g7'), 999);
+        assert.equal(Base62.decode('G7'), 999);
         assert.equal(Base62.decode('13'), 65);
         //zero padded strings
         assert.equal(Base62.decode('0013'), 65);
         //test big numbers
-        assert.equal(Base62.decode("2Q3rKTOF"), 10000000000001);
-        assert.equal(Base62.decode("2Q3rKTOH"), 10000000000003);
+        assert.equal(Base62.decode("2q3Rktof"), 10000000000001);
+        assert.equal(Base62.decode("2q3Rktog"), 10000000000003);
     });
 });
 
