@@ -1,5 +1,5 @@
 # [Base62.js](http://libraries.io/npm/base62)
-[![build status](https://github.com/base64/base64.js/workflows/tests/badge.svg)](https://github.com/base64/base64.js/actions)
+[![build status](https://github.com/base62/base62.js/workflows/tests/badge.svg)](https://github.com/base62/base62.js/actions)
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
 [![devDependency Status](https://david-dm.org/base62/base62.js/dev-status.svg?theme=shields.io)](https://david-dm.org/base62/base62.js#info=devDependencies)
 [![Gitter chat](http://img.shields.io/badge/gitter-base62/base62.js-brightgreen.svg)](https://gitter.im/base62/base62.js)
