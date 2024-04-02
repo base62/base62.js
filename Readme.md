@@ -1,11 +1,7 @@
-# [Base62.js](http://libraries.io/npm/base62)
-[![build status](https://secure.travis-ci.org/base62/base62.js.svg)](http://travis-ci.org/base62/base62.js)
+# Base62.js
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
-[![devDependency Status](https://david-dm.org/base62/base62.js/dev-status.svg?theme=shields.io)](https://david-dm.org/base62/base62.js#info=devDependencies)
-[![Gitter chat](http://img.shields.io/badge/gitter-base62/base62.js-brightgreen.svg)](https://gitter.im/base62/base62.js)
 
 A JavaScript Base62 encode/decoder
-
 
 ## What is Base62 encoding?
 
@@ -121,4 +117,4 @@ Please report issues or feature requests in
 
 ## Copyright
 
-Copyright (c) 2016 Andrew Nesbitt. See [LICENSE](https://github.com/base62/base62.js/blob/master/LICENSE) for details.
+Copyright (c) 2024 Andrew Nesbitt. See [LICENSE](https://github.com/base62/base62.js/blob/master/LICENSE) for details.
