@@ -1,5 +1,8 @@
 # Base62.js
 [![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
+[![CI](https://github.com/base62/base62.js/actions/workflows/ci.yml/badge.svg)](https://github.com/base62/base62.js/actions/workflows/ci.yml)
+[![npm downloads](https://img.shields.io/npm/dm/base62.svg)](https://www.npmjs.com/package/base62)
+[![license](https://img.shields.io/npm/l/base62.svg)](https://github.com/base62/base62.js/blob/master/LICENSE)
 
 A JavaScript Base62 encode/decoder
 
