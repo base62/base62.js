@@ -42,6 +42,13 @@ base62.decode("g7"); // 999
 
 This uses the default **ASCII character set** for encoding/decoding.
 
+Both `encode` and `decode` support BigInt for values beyond `Number.MAX_SAFE_INTEGER`:
+
+```javascript
+base62.encode(9007199254740993n);                    // "FfGNdXsE9"
+base62.decode("FfGNdXsE9", { bigint: true });        // 9007199254740993n
+```
+
 It's also possible to define a **custom character set** instead:
 
 ```javascript
