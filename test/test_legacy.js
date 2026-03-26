@@ -26,6 +26,19 @@ describe("decode", function() {
         assert.equal(Base62.decode("2Q3rKTOF"), 10000000000001);
         assert.equal(Base62.decode("2Q3rKTOH"), 10000000000003);
     });
+
+    it("should decode to BigInt when requested", function() {
+        assert.equal(Base62.decode('g7', { bigint: true }), 999n);
+        assert.equal(Base62.decode("FfGNdXsE9", { bigint: true }), 9007199254740993n);
+    });
+});
+
+describe("BigInt encode", function() {
+    it("should encode BigInt values", function() {
+        assert.equal(Base62.encode(0n), '0');
+        assert.equal(Base62.encode(999n), 'g7');
+        assert.equal(Base62.encode(9007199254740993n), 'FfGNdXsE9');
+    });
 });
 
 describe("setCharacterSequence", function(){

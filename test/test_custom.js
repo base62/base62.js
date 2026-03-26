@@ -29,6 +29,25 @@ describe("Base62 codec (custom character set)", function() {
         assertSame(decode("7bH", charset), 9999);
         assertSame(decode("~~~", charset), 238327);
     });
+
+    it("should encode BigInt values", function() {
+        assertSame(encode(0n, charset), "9");
+        assertSame(encode(999n, charset), "G2");
+        assertSame(encode(238327n, charset), "~~~");
+    });
+
+    it("should decode to BigInt when requested", function() {
+        assertSame(decode("9", charset, { bigint: true }), 0n);
+        assertSame(decode("G2", charset, { bigint: true }), 999n);
+        assertSame(decode("~~~", charset, { bigint: true }), 238327n);
+    });
+
+    it("should roundtrip BigInt values beyond Number.MAX_SAFE_INTEGER", function() {
+        var big = 123456789012345678901234567890n;
+        var encoded = encode(big, charset);
+        var decoded = decode(encoded, charset, { bigint: true });
+        assertSame(decoded, big);
+    });
 });
 
 describe("arbitrary-length charsets (e.g. Base66)", function() {
