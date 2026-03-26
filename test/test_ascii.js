@@ -35,4 +35,25 @@ describe("Base62 codec (ASCII)", function() {
         assertSame(decode("2Q3rKTOF"), 10000000000001);
         assertSame(decode("2Q3rKTOH"), 10000000000003);
     });
+
+    it("should encode BigInt values", function() {
+        assertSame(encode(0n), "0");
+        assertSame(encode(999n), "g7");
+        assertSame(encode(238327n), "ZZZ");
+        assertSame(encode(9007199254740993n), "FfGNdXsE9");
+    });
+
+    it("should decode to BigInt when requested", function() {
+        assertSame(decode("0", { bigint: true }), 0n);
+        assertSame(decode("g7", { bigint: true }), 999n);
+        assertSame(decode("ZZZ", { bigint: true }), 238327n);
+        assertSame(decode("FfGNdXsE9", { bigint: true }), 9007199254740993n);
+    });
+
+    it("should roundtrip BigInt values beyond Number.MAX_SAFE_INTEGER", function() {
+        var big = 123456789012345678901234567890n;
+        var encoded = encode(big);
+        var decoded = decode(encoded, { bigint: true });
+        assertSame(decoded, big);
+    });
 });
