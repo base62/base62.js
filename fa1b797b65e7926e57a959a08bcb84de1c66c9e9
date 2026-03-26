@@ -1,0 +1,23 @@
+lib/ascii.js
+  9cdb2a58bda103af 5-10,45,52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.19",
+  "base_commit_sha": "fa1b797b65e7926e57a959a08bcb84de1c66c9e9",
+  "prompts": {
+    "9cdb2a58bda103af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb0b1819-390f-4592-a4d5-e6558bbf49c6",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Andrew Nesbitt <andrewnez@gmail.com>",
+      "messages": [],
+      "total_additions": 8,
+      "total_deletions": 18,
+      "accepted_lines": 8,
+      "overriden_lines": 0
+    }
+  }
+}
