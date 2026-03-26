@@ -1,0 +1,25 @@
+package.json
+  9cdb2a58bda103af 26
+benchmark/benchmarks.js
+  9cdb2a58bda103af 1-6,8-16,19,21-25,27,29-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.19",
+  "base_commit_sha": "739c74da8297e0eff41d2836656db0b329c91fca",
+  "prompts": {
+    "9cdb2a58bda103af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb0b1819-390f-4592-a4d5-e6558bbf49c6",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Andrew Nesbitt <andrewnez@gmail.com>",
+      "messages": [],
+      "total_additions": 29,
+      "total_deletions": 60,
+      "accepted_lines": 28,
+      "overriden_lines": 0
+    }
+  }
+}
