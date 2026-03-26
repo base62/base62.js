@@ -19,7 +19,7 @@
   "homepage": "https://github.com/base62/base62.js",
   "main": "./lib/legacy.js",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "test": "mocha",
