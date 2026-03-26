@@ -1,0 +1,25 @@
+package.json
+  9cdb2a58bda103af 22
+.github/workflows/ci.yml
+  9cdb2a58bda103af 1-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.19",
+  "base_commit_sha": "4c4cda6e5d7c4fc7c8c1ea9ca60a3f813fd4bd1f",
+  "prompts": {
+    "9cdb2a58bda103af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb0b1819-390f-4592-a4d5-e6558bbf49c6",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Andrew Nesbitt <andrewnez@gmail.com>",
+      "messages": [],
+      "total_additions": 22,
+      "total_deletions": 1,
+      "accepted_lines": 22,
+      "overriden_lines": 0
+    }
+  }
+}
