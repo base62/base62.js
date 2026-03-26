@@ -1,0 +1,29 @@
+test/test_ascii.js
+  9cdb2a58bda103af 3-4,6,12-21,25-35,39-42,46-49,56
+test/test_custom.js
+  9cdb2a58bda103af 3-4,6,15-20,24-29,33-35,39-41,48,58-60,64-66
+test/test_legacy.js
+  9cdb2a58bda103af 3-5,10-14,20-25,29-30,36-38,42-43,46,61-63,67-68,72,76
+package.json
+  9cdb2a58bda103af 25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.19",
+  "base_commit_sha": "94c824b7884c7870509cfb14822a66660d0a919a",
+  "prompts": {
+    "9cdb2a58bda103af": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb0b1819-390f-4592-a4d5-e6558bbf49c6",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Andrew Nesbitt <andrewnez@gmail.com>",
+      "messages": [],
+      "total_additions": 93,
+      "total_deletions": 110,
+      "accepted_lines": 91,
+      "overriden_lines": 0
+    }
+  }
+}
