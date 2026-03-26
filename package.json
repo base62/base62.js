@@ -22,10 +22,8 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "node --test test/*.js",
     "benchmark": "node benchmark/benchmarks.js; echo; node benchmark/benchmarks_legacy.js"
   },
-  "devDependencies": {
-    "mocha": "^11.7.5"
-  }
+  "devDependencies": {}
 }
