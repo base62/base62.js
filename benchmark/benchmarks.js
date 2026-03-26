@@ -1,64 +1,56 @@
-var base62 = require('../lib/ascii');
-var base62custom = require('../lib/custom');
+"use strict";
 
-var encode = base62.encode;
-var decode = base62.decode;
-var encodeCustom = base62custom.encode;
-var decodeCustom = base62custom.decode;
-var indexCharset = base62custom.indexCharset;
+var base62 = require("../lib/ascii");
+var base62custom = require("../lib/custom");
 
-var intResult, strResult, now, delta, i;
-var charset = indexCharset('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+var charset = base62custom.indexCharset("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 
-function performanceNow() {
-    var t = process.hrtime();
-    return t[0] * 1000 + t[1] / 1000000;
+function bench(name, iterations, fn) {
+    // warmup
+    for (var w = 0; w < 1000; w++) { fn(w); }
+
+    var start = process.hrtime.bigint();
+    for (var i = 0; i < iterations; i++) {
+        fn(i);
+    }
+    var ns = process.hrtime.bigint() - start;
+    var ms = Number(ns) / 1e6;
+    var opsPerSec = Math.round(iterations / (ms / 1000));
+    console.log("  " + name.padEnd(30) + ms.toFixed(2).padStart(10) + "ms" + opsPerSec.toLocaleString().padStart(16) + " ops/sec");
 }
 
-// decode with default charset (ASCII)
+var n = 5000000;
 
-now = performanceNow();
-for (intResult = 0, i = 0; i < 1000000; i++) {
-    intResult += decode('00thing');
-}
+console.log("ASCII charset (" + n.toLocaleString() + " iterations)\n");
 
-delta = performanceNow() - now;
-console.log('|', 'decoding with default charset (1000000x)', '|',
-        intResult === 432635954000000 ? 'correct' : 'incorrect', '|',
-        delta.toFixed(2), 'ms', '|');
+console.log("  Small numbers (0 to " + n.toLocaleString() + "):");
+bench("encode", n, function(i) { base62.encode(i); });
+bench("decode", n, function() { base62.decode("g7"); });
+bench("encode bigint", n, function(i) { base62.encode(BigInt(i)); });
+bench("decode bigint", n, function() { base62.decode("g7", { bigint: true }); });
 
-// encode with default charset (ASCII)
+console.log("  Large numbers (~10^13):");
+bench("encode", n, function(i) { base62.encode(i + 10000000000000); });
+bench("decode", n, function() { base62.decode("2Q3rKTOF"); });
+bench("encode bigint", n, function(i) { base62.encode(BigInt(i) + 10000000000000n); });
+bench("decode bigint", n, function() { base62.decode("2Q3rKTOF", { bigint: true }); });
 
-now = performanceNow();
-for (strResult = '', i = 0; i < 1000000; i++) {
-    strResult = encode(i);
-}
+console.log("  Very large bigints (~10^30):");
+var bigOffset = 123456789012345678901234567890n;
+bench("encode bigint", n, function(i) { base62.encode(BigInt(i) + bigOffset); });
+bench("decode bigint", n, function() { base62.decode("3oPBaJPMWjmDE4RUeJ", { bigint: true }); });
 
-delta = performanceNow() - now;
-console.log('|', 'encoding with default charset (1000000x)', '|',
-        strResult === '4c91' ? 'correct' : 'incorrect', '|',
-        delta.toFixed(2), 'ms', '|');
+console.log();
+console.log("Custom charset (" + n.toLocaleString() + " iterations)\n");
 
-// decode with custom charset
+console.log("  Small numbers (0 to " + n.toLocaleString() + "):");
+bench("encode", n, function(i) { base62custom.encode(i, charset); });
+bench("decode", n, function() { base62custom.decode("G2", charset); });
+bench("encode bigint", n, function(i) { base62custom.encode(BigInt(i), charset); });
+bench("decode bigint", n, function() { base62custom.decode("G2", charset, { bigint: true }); });
 
-now = performanceNow();
-for (intResult = 0, i = 0; i < 1000000; i++) {
-    intResult += decodeCustom('00thing', charset);
-}
-
-delta = performanceNow() - now;
-console.log('|', 'decoding with custom charset (1000000x)', '|',
-        intResult === 823118800000000 ? 'correct' : 'incorrect', '|',
-        delta.toFixed(2), 'ms', '|');
-
-// encode with custom charset
-
-now = performanceNow();
-for (strResult = '', i = 0; i < 1000000; i++) {
-    strResult = encodeCustom(i, charset);
-}
-
-delta = performanceNow() - now;
-console.log('|', 'encoding with custom charset (1000000x)', '|',
-        strResult === '4C91' ? 'correct' : 'incorrect', '|',
-        delta.toFixed(2), 'ms', '|');
+console.log("  Large numbers (~10^13):");
+bench("encode", n, function(i) { base62custom.encode(i + 10000000000000, charset); });
+bench("decode", n, function() { base62custom.decode("7c3RKTOQ", charset); });
+bench("encode bigint", n, function(i) { base62custom.encode(BigInt(i) + 10000000000000n, charset); });
+bench("decode bigint", n, function() { base62custom.decode("7c3RKTOQ", charset, { bigint: true }); });
