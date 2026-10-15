@@ -1,9 +1,16 @@
 "use strict";
 
-var { describe, it } = require("node:test");
+var { describe, it, afterEach } = require("node:test");
 var assert = require("node:assert");
 
 var Base62 = require("../");
+var defaultEncode = Base62.encode;
+var defaultDecode = Base62.decode;
+
+afterEach(function() {
+    Base62.encode = defaultEncode;
+    Base62.decode = defaultDecode;
+});
 
 describe("encode", function() {
     it("should encode a number to a Base62 string", function() {
@@ -39,7 +46,7 @@ describe("BigInt encode", function() {
     });
 });
 
-describe("setCharacterSequence", function() {
+describe("setCharacterSet", function() {
     it("should update the character sequence", function() {
         Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 
@@ -76,5 +83,104 @@ describe("setCharacterSequence", function() {
         assert.throws(function() {
             Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxzz");
         }, /You must use unique characters/);
+    });
+});
+
+describe("input validation", function() {
+    it("should reject invalid encode input", function() {
+        assert.throws(function() { Base62.encode(-1); }, RangeError);
+        assert.throws(function() { Base62.encode(-1n); }, RangeError);
+        assert.throws(function() { Base62.encode(1.5); }, RangeError);
+        assert.throws(function() { Base62.encode(NaN); }, RangeError);
+        assert.throws(function() { Base62.encode(Infinity); }, RangeError);
+        assert.throws(function() { Base62.encode("999"); }, TypeError);
+        assert.throws(function() { Base62.encode(undefined); }, TypeError);
+    });
+
+    it("should reject numbers above MAX_SAFE_INTEGER", function() {
+        assert.strictEqual(Base62.encode(Number.MAX_SAFE_INTEGER), "FfGNdXsE7");
+        assert.throws(function() { Base62.encode(Number.MAX_SAFE_INTEGER + 1); }, /pass a BigInt/);
+        assert.strictEqual(Base62.encode(BigInt(Number.MAX_SAFE_INTEGER) + 1n), "FfGNdXsE8");
+    });
+
+    it("should reject invalid decode input", function() {
+        assert.throws(function() { Base62.decode(""); }, RangeError);
+        assert.throws(function() { Base62.decode(undefined); }, TypeError);
+        assert.throws(function() { Base62.decode(999); }, TypeError);
+        assert.throws(function() { Base62.decode("g7 "); }, /Invalid character " "/);
+        assert.throws(function() { Base62.decode("!g7"); }, /Invalid character "!"/);
+        assert.throws(function() { Base62.decode("g{"); }, /Invalid character/);
+        assert.throws(function() { Base62.decode("gé"); }, /Invalid character "é"/);
+        assert.throws(function() { Base62.decode("g😀"); }, /Invalid character "😀"/);
+        assert.throws(function() { Base62.decode("g😀", { bigint: true }); }, /Invalid character "😀"/);
+        assert.throws(function() { Base62.decode("g7!", { bigint: true }); }, /Invalid character "!"/);
+        assert.throws(function() { Base62.decode("", { bigint: true }); }, RangeError);
+    });
+
+    it("should reject decoded values above MAX_SAFE_INTEGER", function() {
+        assert.strictEqual(Base62.decode("FfGNdXsE7"), Number.MAX_SAFE_INTEGER);
+        assert.throws(function() { Base62.decode("FfGNdXsE8"); }, /use \{ bigint: true \}/);
+        assert.throws(function() { Base62.decode("Z".repeat(100000)); }, RangeError);
+        assert.strictEqual(Base62.decode("FfGNdXsE8", { bigint: true }), 9007199254740992n);
+    });
+
+    it("should still accept leading zeros", function() {
+        assert.strictEqual(Base62.decode("0000000000000000g7"), 999);
+    });
+
+    it("should validate input with a custom character set", function() {
+        Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+        assert.throws(function() { Base62.encode(-1); }, RangeError);
+        assert.throws(function() { Base62.decode("G7!"); }, /Invalid character "!"/);
+        assert.throws(function() { Base62.decode("G7!", { bigint: true }); }, /Invalid character "!"/);
+        assert.throws(function() { Base62.decode(""); }, RangeError);
+    });
+});
+
+describe("setCharacterSet with astral characters", function() {
+    it("should count code points, not UTF-16 units", function() {
+        Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy😀");
+        assert.strictEqual(Base62.encode(61), "😀");
+        assert.strictEqual(Base62.encode(62 * 61 + 61), "😀😀");
+        assert.strictEqual(Base62.decode("😀😀"), 62 * 61 + 61);
+        assert.strictEqual(Base62.decode("1😀", { bigint: true }), 123n);
+    });
+});
+
+describe("create", function() {
+    it("should return a codec without changing the default", function() {
+        var codec = Base62.create("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+        assert.strictEqual(codec.encode(999), "G7");
+        assert.strictEqual(codec.decode("G7"), 999);
+        assert.strictEqual(codec.decode("G7", { bigint: true }), 999n);
+        assert.strictEqual(Base62.encode(999), "g7");
+        assert.strictEqual(Base62.decode("g7"), 999);
+    });
+
+    it("should be unaffected by setCharacterSet", function() {
+        var codec = Base62.create("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+        assert.strictEqual(codec.encode(999), "g7");
+    });
+
+    it("should accept character sets of other lengths", function() {
+        var hex = Base62.create("0123456789abcdef");
+        assert.strictEqual(hex.encode(255), "ff");
+        assert.strictEqual(hex.decode("ff"), 255);
+    });
+
+    it("should reject invalid character sets", function() {
+        assert.throws(function() { Base62.create("0"); }, /at least 2 characters/);
+        assert.throws(function() { Base62.create("0123456789abcdee"); }, /unique characters/);
+        assert.throws(function() { Base62.create(undefined); }, TypeError);
+        assert.throws(function() { Base62.create(["a", "b"]); }, TypeError);
+        assert.throws(function() { Base62.setCharacterSet(undefined); }, TypeError);
+    });
+
+    it("should report whole astral characters as invalid", function() {
+        var hex = Base62.create("0123456789abcdef");
+        assert.throws(function() { hex.decode("f😀"); }, /Invalid character "😀"/);
+        var emoji = Base62.create("0123456789😀");
+        assert.throws(function() { emoji.decode("1😃"); }, /Invalid character "😃"/);
     });
 });

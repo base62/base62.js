@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/base62/base62.js",
   "main": "./lib/legacy.js",
+  "types": "./index.d.ts",
+  "files": [
+    "lib",
+    "index.d.ts"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },
