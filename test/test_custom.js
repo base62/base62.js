@@ -66,3 +66,16 @@ describe("arbitrary-length charsets (e.g. Base66)", function() {
         assert.strictEqual(decode("14", charset), 70);
     });
 });
+
+describe("indexCharset", function() {
+    it("should reject duplicate characters", function() {
+        assert.throws(function() { base62.indexCharset("abca"); }, /unique characters/);
+    });
+
+    it("should handle astral characters", function() {
+        var emoji = base62.indexCharset("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz😀");
+        assert.strictEqual(emoji.length, 63);
+        assert.strictEqual(encode(62, emoji), "😀");
+        assert.strictEqual(decode("😀", emoji), 62);
+    });
+});
