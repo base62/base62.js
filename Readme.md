@@ -1,8 +1,8 @@
 # Base62.js
-[![npm version](https://badge.fury.io/js/base62.svg)](http://badge.fury.io/js/base62)
+[![npm version](https://badge.fury.io/js/base62.svg)](https://badge.fury.io/js/base62)
 [![CI](https://github.com/base62/base62.js/actions/workflows/ci.yml/badge.svg)](https://github.com/base62/base62.js/actions/workflows/ci.yml)
 [![npm downloads](https://img.shields.io/npm/dm/base62.svg)](https://www.npmjs.com/package/base62)
-[![license](https://img.shields.io/npm/l/base62.svg)](https://github.com/base62/base62.js/blob/master/LICENSE)
+[![license](https://img.shields.io/npm/l/base62.svg)](https://github.com/base62/base62.js/blob/main/LICENSE)
 
 A JavaScript Base62 encode/decoder.
 
@@ -38,18 +38,45 @@ base62.encode(9007199254740993n);                // "FfGNdXsE9"
 base62.decode("FfGNdXsE9", { bigint: true });    // 9007199254740993n
 ```
 
-You can also use a custom character set:
+`encode` accepts non-negative integers up to `Number.MAX_SAFE_INTEGER`, or any non-negative BigInt. Anything else throws: negatives, fractions, `NaN`, `Infinity`, strings, and numbers above the safe range, which JavaScript can't represent exactly. If a large ID arrives as a string, convert it with `BigInt(str)` rather than `Number(str)`, since `Number` has already rounded it.
+
+`decode` throws on an empty string, on any character outside the character set, and on results above `Number.MAX_SAFE_INTEGER` unless `{ bigint: true }` is passed:
+
+```javascript
+base62.decode("g7!");        // RangeError: Invalid character "!" in "g7!"
+base62.decode("FfGNdXsE8");  // RangeError: "FfGNdXsE8" decodes above Number.MAX_SAFE_INTEGER, use { bigint: true }
+```
+
+Leading zeros are ignored, so `"0g7"` and `"g7"` both decode to 999. Pad with `encoded.padStart(n, "0")` if you need fixed-length output. Decoding with `{ bigint: true }` takes time quadratic in the input length, so cap the length of untrusted input before decoding it.
+
+
+## Custom character sets
+
+`create` returns an `encode`/`decode` pair for a character set of any length (at least 2 unique characters):
 
 ```javascript
 var base62 = require("base62");
+var codec = base62.create("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 
+codec.encode(999);  // "G7"
+codec.decode("G7"); // 999
+```
+
+`setCharacterSet` changes the character set of the shared module instead, for every caller in the process, including other dependencies that use base62. It expects exactly 62 unique characters and replaces `base62.encode` and `base62.decode`, so references taken before the call keep the old character set. Prefer `create` in libraries.
+
+```javascript
 base62.setCharacterSet("~9876543210ABCDEFGHIJKLMNOPQRSTU$#@%!abcdefghijklmnopqrstuvw-=");
 
 base62.encode(999);  // "F3"
 base62.decode("F3"); // 999
 ```
 
-`setCharacterSet` expects a string containing exactly 62 unique characters.
+Characters outside the Basic Multilingual Plane, such as emoji, count as one character each.
+
+
+## Upgrading to 3.0
+
+Version 3.0 adds the input checks above. Earlier versions returned wrong values without an error: `decode("g7 ")` gave 61922, `decode("!g7")` gave -56661, `encode(1.5)` gave `"undefined"`, and numbers past `Number.MAX_SAFE_INTEGER` lost precision. Version 3.0 also adds BigInt support and `create`, and requires Node 18 or later. Output for valid input in the safe range is unchanged from 1.x and 2.x.
 
 
 ## Development
@@ -66,4 +93,4 @@ Please report issues or feature requests in
 
 ## License
 
-MIT. Copyright (c) 2026 Andrew Nesbitt. See [LICENSE](https://github.com/base62/base62.js/blob/master/LICENSE) for details.
+MIT. Copyright (c) 2026 Andrew Nesbitt. See [LICENSE](https://github.com/base62/base62.js/blob/main/LICENSE) for details.
